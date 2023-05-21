@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Выбери верное"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Вопрос 1 из 10"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+
+        <Button
+            android:id="@+id/firstWord"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="1 слово"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="40dp"
+            android:backgroundTint="@color/GoodYellow"
+            />
+
+        <Button
+            android:id="@+id/secondWord"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="2 слово"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:textSize="40dp"
+            android:backgroundTint="@color/GoodYellow"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

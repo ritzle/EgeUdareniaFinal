@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    >
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/backBtn"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_gravity="left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back"
+        />
+
+    <TextView
+        android:id="@+id/gradePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ваша отметка: 5"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/scorePlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Вы ответили верно на n из 10"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/wrongWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ход решения:"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        />
+
+
+</LinearLayout>
