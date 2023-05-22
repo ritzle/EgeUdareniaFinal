@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ударения"
+        android:text="Accents"
         android:gravity="center"
         android:textSize="50dp"
         android:textColor="@color/black"
@@ -25,20 +25,40 @@
         android:layout_margin="20dp"
         >
 
+        <View
+            android:id="@+id/statsBtn"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/smooth_rect"
+            app:layout_constraintEnd_toStartOf="@+id/settingsBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/white"/>
 
         <View
             android:id="@+id/settingsBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:background="@drawable/smooth_rect"
-            android:backgroundTint="@color/white"
-
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/statsBtn"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/white"
+            />
 
 
-
+        <TextView
+            android:id="@+id/payText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Статистика"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/statsBtn"
+            app:layout_constraintEnd_toEndOf="@+id/statsBtn"
+            app:layout_constraintStart_toStartOf="@+id/statsBtn"
+            app:layout_constraintTop_toTopOf="@+id/statsBtn" />
 
         <TextView
             android:id="@+id/forbesText"
@@ -52,19 +72,28 @@
             app:layout_constraintStart_toStartOf="@+id/settingsBtn"
             app:layout_constraintTop_toTopOf="@+id/settingsBtn" />
 
+        <!--        <ImageView-->
+        <!--            android:id="@+id/statsImg"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/payText"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/statsBtn"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:srcCompat="@drawable/stats"-->
+        <!--            />-->
 
+        <!--        <ImageView-->
+        <!--            android:id="@+id/settingsImg"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/forbesText"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/settingsBtn"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:srcCompat="@drawable/settings"-->
 
-        <ImageView
-            android:id="@+id/settingsImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forbesText"
-            app:layout_constraintStart_toStartOf="@+id/settingsBtn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/settings"
-
-            />
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

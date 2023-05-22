@@ -1,10 +1,12 @@
 package com.example.egeudareniafinal;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.egeudareniafinal.databinding.FinishFragmentBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,9 +26,15 @@ public class FinishFragment extends Fragment {
     private List<FinishItem> mFinishItems;
     private RecyclerView mRecyclerView;
 
+    private SharedPreferences sPref;
+
+
     private FinishAdapter mAdapter;
     private FinishFragmentBinding binding;
     private WordDatabaseHelper databaseHelper;
+
+
+    private String SAVED_TEXT = "text";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,22 +51,38 @@ public class FinishFragment extends Fragment {
 
         binding.scorePlayer.setText("Вы ответили верно на " + GameFragment.correctAnswer + " из 10");
 
-        if (GameFragment.correctAnswer < 5)
-        {
+        if (GameFragment.correctAnswer < 5) {
             binding.gradePlayer.setText("Ваша отметка: 2");
-        }
-        else if(GameFragment.correctAnswer < 7)
-        {
+        } else if (GameFragment.correctAnswer < 7) {
             binding.gradePlayer.setText("Ваша отметка: 3");
-        }
-        else if(GameFragment.correctAnswer < 9)
-        {
+        } else if (GameFragment.correctAnswer < 9) {
             binding.gradePlayer.setText("Ваша отметка: 4");
-        }
-        else
-        {
+        } else {
             binding.gradePlayer.setText("Ваша отметка: 5");
         }
+
+
+        //статистика
+
+
+        sPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+
+        String text = sPref.getString(SAVED_TEXT, "");
+
+        if (text.length() == 0) {
+
+            ed.putString(SAVED_TEXT, String.valueOf(GameFragment.correctAnswer));
+            ed.commit();
+        }else {
+            ed.putString(SAVED_TEXT, text + " " + String.valueOf(GameFragment.correctAnswer));
+            ed.commit();
+
+        }
+
+
+        Log.e("E", "save");
+        //------------------
 
         GameFragment.question = 1;
         GameFragment.correctAnswer = 0;

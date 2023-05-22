@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.egeudareniafinal.Stats.StatsFragment;
 import com.example.egeudareniafinal.databinding.StartFragmentBinding;
 
 
@@ -45,6 +46,15 @@ public class StartFragment extends Fragment {
             fragmentTransaction.replace(R.id.rootContainer, new SettingsFragment());
             fragmentTransaction.commit();
         });
+
+        binding.statsBtn.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.rootContainer, new StatsFragment());
+            fragmentTransaction.commit();
+        });
+
+
 
     }
 }
