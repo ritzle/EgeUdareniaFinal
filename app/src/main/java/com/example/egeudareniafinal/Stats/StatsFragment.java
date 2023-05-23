@@ -15,10 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.egeudareniafinal.GameFragment;
 import com.example.egeudareniafinal.R;
 import com.example.egeudareniafinal.StartFragment;
 
 import com.example.egeudareniafinal.databinding.StatsFragmentBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class StatsFragment extends Fragment {
 
 
 
-    private int counter = 1;
+
 
 
 
@@ -64,8 +66,10 @@ public class StatsFragment extends Fragment {
             for (String number : text.split(" ")) {
                 list.add(Integer.parseInt(number));}
 
-            for (Integer el : list) {
-                addEl(count++, el);}
+            for (int i = 0; i < list.size(); i++) {
+                addEl(i+1, list.get(i));
+
+            }
         }
 
 
@@ -83,30 +87,6 @@ public class StatsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        sPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        if (sPref.getString(SAVED_TEXT,"") == null){
-            Log.e("E", "не получмл данные");
-        }else {
-            String text = sPref.getString(SAVED_TEXT, "");
-
-
-            List<Integer> list = new ArrayList<>();
-
-            if (list.size() != 0) {
-                for (String number : text.split(" ")) {
-                    list.add(Integer.parseInt(number));
-                }
-
-
-                for (Integer el : list) {
-                    addEl(count++, el);
-                }
-            }
-        }
-
-
-
 
 
         binding.backBtn.setOnClickListener(v->{
@@ -134,13 +114,33 @@ public class StatsFragment extends Fragment {
     }
 
     private void addEl(int count, int pr) {
-        Note note = new Note("Title-" + count, " " + pr +"/" + 10);
+        Note note = new Note("Попытка: " + count, " " + pr + "/10");
         itemStatsAdapter.additem(note);
 
     }
 
     private void onClickNote(Note note) {
-        Log.e("E", "еще нету");
+        String str = note.getaccount();
+        int index = str.indexOf("/");
+        String substr = str.substring(1, index);
+
+        if (Integer.parseInt(substr) < 4) {
+            Snackbar.make(requireView(), "Нужно стараться лучше", Snackbar.LENGTH_LONG).show();
+
+        } else if (Integer.parseInt(substr) < 7) {
+            Snackbar.make(requireView(), "Ты можешь лучше", Snackbar.LENGTH_LONG).show();
+
+
+        } else if (Integer.parseInt(substr) < 9) {
+            Snackbar.make(requireView(), "Твердая четверка", Snackbar.LENGTH_LONG).show();
+
+
+        } else if (Integer.parseInt(substr) == 10) {
+            Snackbar.make(requireView(), "Высший бал", Snackbar.LENGTH_LONG).show();
+
+        }
+        Log.e("E", substr);
+
     }
 
 }

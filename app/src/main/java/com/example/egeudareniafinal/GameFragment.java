@@ -50,7 +50,7 @@ public class GameFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (wordsList.size() <11)
+        if (wordsList.size() <3)
             wordsList = Words.newArray();
 
         binding.question.setText("Вопрос " + question + " из 10");
@@ -158,7 +158,7 @@ public class GameFragment extends Fragment {
                         }
 
                     }
-                }, 2000);
+                }, 800);
             }
 
 
@@ -245,7 +245,7 @@ public class GameFragment extends Fragment {
 
 
                     }
-                }, 2000);
+                }, 800);
             }
         });
 
