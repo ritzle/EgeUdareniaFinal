@@ -2,8 +2,10 @@ package com.example.egeudareniafinal;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.egeudareniafinal.databinding.GameFragmentBinding;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -27,13 +30,19 @@ import java.util.TimerTask;
 public class GameFragment extends Fragment {
 
     private GameFragmentBinding binding;
-    public static ArrayList<WordsSingleArray> wordsList = Words.newArray();;
+    public static ArrayList<WordsSingleArray> wordsList;
     private WordsSingleArray wordPair;
     private boolean threadFlag = false; //Когда поток запущен - true, иначе - false
     public static int question = 1;
     public static int correctAnswer;
     public static List<FinishItem> FinishItems = new ArrayList<>();
     private WordDatabaseHelper databaseHelper;
+
+    private DatabaseHelper mDBHelper;
+    private static SQLiteDatabase mDb;
+
+
+
 
 
 
@@ -42,16 +51,57 @@ public class GameFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = GameFragmentBinding.inflate(inflater, container, false);
 
+        super.onCreate(savedInstanceState);
+        mDBHelper = new DatabaseHelper(getActivity());
+
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        try {
+            mDb = mDBHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
+
+        wordsList = getWordList();
+
         return binding.getRoot();
 
+
+
+    }
+
+    public ArrayList<WordsSingleArray>  getWordList(){
+
+        ArrayList<WordsSingleArray> words = new ArrayList<>();
+
+        Cursor cursor = mDb.rawQuery("SELECT correctWord, wrongWord FROM WordEge", null);
+        int field1Index = cursor.getColumnIndexOrThrow("correctWord");
+        int field2Index = cursor.getColumnIndexOrThrow("wrongWord");
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String field1Value = cursor.getString(field1Index);
+            String field2Value = cursor.getString(field2Index);
+            // использование значений полей
+            words.add(new WordsSingleArray(field1Value, field2Value));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return words;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         if (wordsList.size() <3)
-            wordsList = Words.newArray();
+            wordsList.clear();
+            wordsList = getWordList();
 
         binding.question.setText("Вопрос " + question + " из 10");
 
@@ -64,6 +114,12 @@ public class GameFragment extends Fragment {
         int randomIndex = rand.nextInt(wordsList.size());
         wordPair = wordsList.get(randomIndex); //Берет рандомную пару слов по рандомному индексу ArrayList`а
 
+        String p = "";
+        for (int i = 0; i < wordsList.size(); i++) {
+            String s =  wordsList.get(i).correctWord + " " + wordsList.get(i).wrongWord;
+            p += s + "|";
+        }
+        Log.e("E",p + wordsList.size());
 
 
         //Рандомно устанавливает слова в кнопках

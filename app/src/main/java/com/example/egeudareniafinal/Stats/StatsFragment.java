@@ -119,27 +119,9 @@ public class StatsFragment extends Fragment {
 
     }
 
+
+    // как Создание слушателя на каждый объект в ресайкл статистике
     private void onClickNote(Note note) {
-        String str = note.getaccount();
-        int index = str.indexOf("/");
-        String substr = str.substring(1, index);
-
-        if (Integer.parseInt(substr) < 4) {
-            Snackbar.make(requireView(), "Нужно стараться лучше", Snackbar.LENGTH_LONG).show();
-
-        } else if (Integer.parseInt(substr) < 7) {
-            Snackbar.make(requireView(), "Ты можешь лучше", Snackbar.LENGTH_LONG).show();
-
-
-        } else if (Integer.parseInt(substr) < 9) {
-            Snackbar.make(requireView(), "Твердая четверка", Snackbar.LENGTH_LONG).show();
-
-
-        } else if (Integer.parseInt(substr) == 10) {
-            Snackbar.make(requireView(), "Высший бал", Snackbar.LENGTH_LONG).show();
-
-        }
-        Log.e("E", substr);
 
     }
 
