@@ -1,6 +1,5 @@
-package com.example.egeudareniafinal.Stats;
+package com.example.egeudareniafinal;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +7,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.egeudareniafinal.Stats.ItemStatsAdapter;
+import com.example.egeudareniafinal.Stats.Note;
 import com.example.egeudareniafinal.databinding.ItemStatsBinding;
+import com.example.egeudareniafinal.databinding.SimpleStatsItemBinding;
 
 import java.util.List;
 
-
-public class ItemStatsAdapter extends RecyclerView.Adapter<ItemStatsAdapter.ViewHolder> {
+public class SimpleItemStatsAdapter extends RecyclerView.Adapter<SimpleItemStatsAdapter.ViewHolder> {
 
     private final List<Note> data;
-    private final NoteClickListener callback;
 
-    public ItemStatsAdapter(List<Note> data, NoteClickListener callback) {
+    public SimpleItemStatsAdapter(List<Note> data) {
         this.data = data;
-        this.callback = callback;
     }
 
 
@@ -37,13 +36,13 @@ public class ItemStatsAdapter extends RecyclerView.Adapter<ItemStatsAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemStatsBinding item = ItemStatsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        SimpleStatsItemBinding item = SimpleStatsItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(item.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(data.get(position));
+
     }
 
     @Override
@@ -60,12 +59,7 @@ public class ItemStatsAdapter extends RecyclerView.Adapter<ItemStatsAdapter.View
             binding = ItemStatsBinding.bind(itemView);
         }
 
-        public void bind(Note note) {
-            binding.getRoot().setOnClickListener(v -> callback.onClick(note));
-            binding.title.setText(note.getTitle());
-            binding.account.setText(note.getAccount());
 
-        }
     }
 
     public interface NoteClickListener {

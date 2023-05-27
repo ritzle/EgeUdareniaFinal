@@ -1,6 +1,8 @@
 package com.example.egeudareniafinal;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,6 +40,12 @@ public class GameFragment extends Fragment {
     public static List<FinishItem> FinishItems = new ArrayList<>();
     private WordDatabaseHelper databaseHelper;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private int num = 0;
+
+    private StatsDatabase statsDatabase;
+
     private DatabaseHelper mDBHelper;
     private static SQLiteDatabase mDb;
 
@@ -53,6 +61,7 @@ public class GameFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         mDBHelper = new DatabaseHelper(getActivity());
+        statsDatabase = new StatsDatabase(getActivity());
 
         try {
             mDBHelper.updateDataBase();
@@ -67,6 +76,7 @@ public class GameFragment extends Fragment {
         }
 
         wordsList = getWordList();
+
 
         return binding.getRoot();
 
@@ -100,8 +110,15 @@ public class GameFragment extends Fragment {
 
 
         if (wordsList.size() <3)
+        {
             wordsList.clear();
             wordsList = getWordList();
+        }
+
+        sharedPreferences = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        num = sharedPreferences.getInt("AnswersCount", 0);
+        editor = sharedPreferences.edit();
+
 
         binding.question.setText("Вопрос " + question + " из 10");
 
@@ -133,7 +150,6 @@ public class GameFragment extends Fragment {
             binding.secondWord.setText(wordPair.correctWord);
         }
         //--------------------------------------
-
 
         binding.firstWord.setOnClickListener(v -> {
 
@@ -181,6 +197,16 @@ public class GameFragment extends Fragment {
                         databaseHelper.close();
                     }
 
+                    String wrongWordsString = statsDatabase.getWrongWordsString(num);
+                    if (!wrongWordsString.isEmpty())
+                    {
+                        statsDatabase.addWordToWrongWords(num, wordPair.getWrongWord());
+                    }
+                    else
+                    {
+                        statsDatabase.addWrongWords(num, wordPair.getWrongWord());
+                    }
+
                 }
             }
 
@@ -200,8 +226,11 @@ public class GameFragment extends Fragment {
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.rootContainer, new FinishFragment());
                             fragmentTransaction.commit();
-                        }
 
+                            num++;
+                            editor.putInt("AnswersCount", num);
+                            editor.apply();
+                        }
                         else
                         {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -267,6 +296,18 @@ public class GameFragment extends Fragment {
                         databaseHelper.close();
                     }
 
+                    String wrongWordsString = statsDatabase.getWrongWordsString(num);
+                    if (!wrongWordsString.isEmpty())
+                    {
+                        statsDatabase.addWordToWrongWords(num, wordPair.getWrongWord());
+                    }
+                    else
+                    {
+                        statsDatabase.addWrongWords(num, wordPair.getWrongWord());
+                    }
+
+
+
                 }
 
             }
@@ -287,6 +328,10 @@ public class GameFragment extends Fragment {
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.rootContainer, new FinishFragment());
                             fragmentTransaction.commit();
+
+                            num++;
+                            editor.putInt("AnswersCount", num);
+                            editor.apply();
                         }
                         else
                         {

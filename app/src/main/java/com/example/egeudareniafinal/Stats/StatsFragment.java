@@ -17,8 +17,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.egeudareniafinal.GameFragment;
 import com.example.egeudareniafinal.R;
+import com.example.egeudareniafinal.SettingsFragment;
+import com.example.egeudareniafinal.SimpleStatsFragment;
 import com.example.egeudareniafinal.StartFragment;
 
+import com.example.egeudareniafinal.StatsDatabase;
 import com.example.egeudareniafinal.databinding.StatsFragmentBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +34,8 @@ public class StatsFragment extends Fragment {
     private @NonNull StatsFragmentBinding binding;
     private String SAVED_TEXT = "text";
     private SharedPreferences sPref;
+
+    private StatsDatabase statsDatabase;
 
 
     private static int count = 0;
@@ -51,6 +56,7 @@ public class StatsFragment extends Fragment {
         binding = StatsFragmentBinding.inflate(inflater,container,false);
         binding.recyclerStatics.setAdapter(itemStatsAdapter);
 
+        statsDatabase = new StatsDatabase(getContext());
 
         sPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
@@ -67,7 +73,7 @@ public class StatsFragment extends Fragment {
                 list.add(Integer.parseInt(number));}
 
             for (int i = 0; i < list.size(); i++) {
-                addEl(i+1, list.get(i));
+                addEl(i+1, list.get(i), i + 1);
 
             }
         }
@@ -102,27 +108,36 @@ public class StatsFragment extends Fragment {
             sPref = getActivity().getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = sPref.edit();
             ed.putString(SAVED_TEXT, "");
+            statsDatabase.deleteAllData();
             ed.commit();
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("AnswersCount", 0);
+            editor.commit();
 
 
             itemStatsAdapter.dellitem();
             itemStatsAdapter.notifyDataSetChanged();
-
         });
 
 
     }
 
-    private void addEl(int count, int pr) {
-        Note note = new Note("Попытка: " + count, " " + pr + "/10");
+    private void addEl(int count, int pr, int addept) {
+        Note note = new Note("Попытка: " + count, " " + pr + "/10","" + addept);
         itemStatsAdapter.additem(note);
 
     }
 
 
     // как Создание слушателя на каждый объект в ресайкл статистике
-    private void onClickNote(Note note) {
-
+    private void onClickNote(Note note)
+    {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.rootContainer, new SimpleStatsFragment(note.getAddept()));
+        fragmentTransaction.commit();
     }
 
 }

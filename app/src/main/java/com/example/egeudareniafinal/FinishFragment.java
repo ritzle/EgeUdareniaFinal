@@ -33,6 +33,11 @@ public class FinishFragment extends Fragment {
     private FinishFragmentBinding binding;
     private WordDatabaseHelper databaseHelper;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private int num;
+    private StatsDatabase statsDatabase;
+
 
     private String SAVED_TEXT = "text";
 
@@ -43,13 +48,20 @@ public class FinishFragment extends Fragment {
         binding = FinishFragmentBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        sharedPreferences = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+        num = sharedPreferences.getInt("AnswersCount", 0);
+        editor = sharedPreferences.edit();
+
+        statsDatabase = new StatsDatabase(getContext());
 
         // создание списка элементов
         mFinishItems = GameFragment.FinishItems;
 
         databaseHelper = new WordDatabaseHelper(getContext());
 
+        num = num - 1;
         binding.scorePlayer.setText("Вы ответили верно на " + GameFragment.correctAnswer + " из 10");
+
 
         if (GameFragment.correctAnswer < 5) {
             binding.gradePlayer.setText("Ваша отметка: 2");
