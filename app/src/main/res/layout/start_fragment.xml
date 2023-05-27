@@ -31,13 +31,13 @@
             android:layout_height="100dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/smooth_rect"
-            app:layout_constraintEnd_toStartOf="@+id/settingsBtn"
+            app:layout_constraintEnd_toStartOf="@+id/infoBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="@color/white"/>
 
         <View
-            android:id="@+id/settingsBtn"
+            android:id="@+id/infoBtn"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:background="@drawable/smooth_rect"
@@ -64,13 +64,13 @@
             android:id="@+id/forbesText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Settings"
+            android:text="@string/Info"
             android:textSize="30sp"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/settingsBtn"
-            app:layout_constraintEnd_toEndOf="@+id/settingsBtn"
-            app:layout_constraintStart_toStartOf="@+id/settingsBtn"
-            app:layout_constraintTop_toTopOf="@+id/settingsBtn" />
+            app:layout_constraintBottom_toBottomOf="@+id/infoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/infoBtn"
+            app:layout_constraintStart_toStartOf="@+id/infoBtn"
+            app:layout_constraintTop_toTopOf="@+id/infoBtn" />
 
         <!--        <ImageView-->
         <!--            android:id="@+id/statsImg"-->

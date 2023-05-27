@@ -11,18 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.egeudareniafinal.databinding.SettingsFragmentBinding;
+import com.example.egeudareniafinal.databinding.InfoFragmentBinding;
+import com.example.egeudareniafinal.databinding.InfoFragmentBinding;
 
 
-public class SettingsFragment extends Fragment {
+public class InformationFragment extends Fragment {
 
-    private SettingsFragmentBinding binding;
+    private InfoFragmentBinding binding;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = SettingsFragmentBinding.inflate(inflater,container,false);
+        binding = InfoFragmentBinding.inflate(inflater,container,false);
 
         return binding.getRoot();
     }
@@ -40,7 +41,6 @@ public class SettingsFragment extends Fragment {
 
         });
 
-        binding.Voice.setChecked(true);
 
 
     }

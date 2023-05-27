@@ -1,4 +1,4 @@
-package com.example.egeudareniafinal;
+package com.example.egeudareniafinal.Finish;
 
 public class FinishItem {
     private int mImageResource;

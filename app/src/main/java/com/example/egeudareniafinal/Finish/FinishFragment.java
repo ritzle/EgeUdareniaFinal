@@ -1,4 +1,4 @@
-package com.example.egeudareniafinal;
+package com.example.egeudareniafinal.Finish;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,6 +16,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.egeudareniafinal.GameFragment;
+import com.example.egeudareniafinal.R;
+import com.example.egeudareniafinal.StartFragment;
+import com.example.egeudareniafinal.StatsDatabase;
+import com.example.egeudareniafinal.WordDatabaseHelper;
 import com.example.egeudareniafinal.databinding.FinishFragmentBinding;
 
 import java.util.List;

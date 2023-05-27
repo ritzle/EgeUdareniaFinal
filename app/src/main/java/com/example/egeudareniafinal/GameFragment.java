@@ -1,6 +1,5 @@
 package com.example.egeudareniafinal;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.egeudareniafinal.Finish.FinishFragment;
+import com.example.egeudareniafinal.Finish.FinishItem;
 import com.example.egeudareniafinal.databinding.GameFragmentBinding;
 
 import java.io.IOException;
@@ -184,7 +185,7 @@ public class GameFragment extends Fragment {
                 {
                     binding.secondWord.setBackgroundColor(getResources().getColor(R.color.GoodGreen));
                     binding.firstWord.setBackgroundColor(getResources().getColor(R.color.GoodRed));
-                    FinishItems.add(new FinishItem(R.drawable.wrong, wordPair.getCorrectWord(), wordPair.getCorrectWord() + ", а не " + wordPair.getWrongWord(), false));
+                    FinishItems.add(new FinishItem(R.drawable.wrong, wordPair.getWrongWord(), wordPair.getCorrectWord() + ", а не " + wordPair.getWrongWord(), false));
 
                     if(!databaseHelper.hasCorrectWord(wordPair.getCorrectWord()))
                     {
@@ -283,7 +284,7 @@ public class GameFragment extends Fragment {
                 {
                     binding.firstWord.setBackgroundColor(getResources().getColor(R.color.GoodGreen));
                     binding.secondWord.setBackgroundColor(getResources().getColor(R.color.GoodRed));
-                    FinishItems.add(new FinishItem(R.drawable.wrong, wordPair.getCorrectWord(), wordPair.getCorrectWord() + ", а не " + wordPair.getWrongWord(), false));
+                    FinishItems.add(new FinishItem(R.drawable.wrong, wordPair.getWrongWord(), wordPair.getCorrectWord() + ", а не " + wordPair.getWrongWord(), false));
 
                     if(!databaseHelper.hasCorrectWord(wordPair.getCorrectWord()))
                     {

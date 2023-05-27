@@ -40,10 +40,10 @@ public class StartFragment extends Fragment {
         });
 
 
-        binding.settingsBtn.setOnClickListener(v -> {
+        binding.infoBtn.setOnClickListener(v -> {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.rootContainer, new SettingsFragment());
+            fragmentTransaction.replace(R.id.rootContainer, new InformationFragment());
             fragmentTransaction.commit();
         });
 

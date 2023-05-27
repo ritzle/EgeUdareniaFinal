@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Настройки"
+            android:text="Информация"
             android:textColor="@color/black"
             android:textSize="40dp"
             android:paddingRight="50dp"
@@ -40,29 +40,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-
-
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/creator_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_marginTop="20dp"
-            android:gravity="center"
-            >
-
-
-
-            <Switch
-                android:id="@+id/Voice"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Проигрывать звук: "
-                android:gravity="center"
-                android:textSize="30sp" />
-
-
-        </LinearLayout>
+            android:text="Игра сделана для защиты проекта samsung"
+            android:textColor="#000000"
+            android:textSize="80dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center" />
 
 
     </LinearLayout>
