@@ -13,6 +13,7 @@
         android:theme="@style/Theme.EgeUdareniaFinal"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="sensorPortrait"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
