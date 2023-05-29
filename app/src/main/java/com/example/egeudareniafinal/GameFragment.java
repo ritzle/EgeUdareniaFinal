@@ -92,9 +92,9 @@ public class GameFragment extends Fragment {
 
         ArrayList<WordsSingleArray> words = new ArrayList<>();
 
-        Cursor cursor = mDb.rawQuery("SELECT correctWord, wrongWord FROM WordEge", null);
+        Cursor cursor = mDb.rawQuery("SELECT correctWord, wrongtWord FROM WordEgeF", null);
         int field1Index = cursor.getColumnIndexOrThrow("correctWord");
-        int field2Index = cursor.getColumnIndexOrThrow("wrongWord");
+        int field2Index = cursor.getColumnIndexOrThrow("wrongtWord");
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             String field1Value = cursor.getString(field1Index);
