@@ -9,7 +9,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
                 <ImageView
@@ -17,15 +17,14 @@
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+
                     android:src="@drawable/back" />
 
                 <TextView
                     android:id="@+id/text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Попытка - 3 \nНеправильные слова"
+                    android:text="Попытка - 3"
                     android:textColor="@color/black"
                     android:textSize="30sp"
                     android:gravity="center"
@@ -35,6 +34,17 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Неправильные слова:"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:gravity="center"
+
+            />
 
 
         <androidx.recyclerview.widget.RecyclerView

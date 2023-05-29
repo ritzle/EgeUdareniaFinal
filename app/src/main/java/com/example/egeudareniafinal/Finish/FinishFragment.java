@@ -65,7 +65,7 @@ public class FinishFragment extends Fragment {
         databaseHelper = new WordDatabaseHelper(getContext());
 
         num = num - 1;
-        binding.scorePlayer.setText("Вы ответили верно на " + GameFragment.correctAnswer + " из 10");
+        binding.scorePlayer.setText(GameFragment.correctAnswer + " из 10");
 
 
         if (GameFragment.correctAnswer < 5) {

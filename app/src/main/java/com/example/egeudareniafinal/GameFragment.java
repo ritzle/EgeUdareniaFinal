@@ -76,7 +76,10 @@ public class GameFragment extends Fragment {
             throw mSQLException;
         }
 
-        wordsList = getWordList();
+        if(question == 1)
+        {
+            wordsList = getWordList();
+        }
 
 
         return binding.getRoot();
@@ -100,7 +103,7 @@ public class GameFragment extends Fragment {
             words.add(new WordsSingleArray(field1Value, field2Value));
             cursor.moveToNext();
         }
-        cursor.close();
+        cursor.close(); // Закрываем курсор после использования
 
         return words;
     }
@@ -110,11 +113,7 @@ public class GameFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        if (wordsList.size() <3)
-        {
-            wordsList.clear();
-            wordsList = getWordList();
-        }
+
 
         sharedPreferences = getActivity().getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
         num = sharedPreferences.getInt("AnswersCount", 0);

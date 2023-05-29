@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Statistics"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/statsBtn"
             app:layout_constraintEnd_toEndOf="@+id/statsBtn"
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Info"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/infoBtn"
             app:layout_constraintEnd_toEndOf="@+id/infoBtn"
@@ -101,7 +101,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         >
 
         <View

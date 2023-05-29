@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Choosetherightone"
         android:gravity="center"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:textColor="@color/black"
         />
 
@@ -39,10 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:text="@string/worOne"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:textSize="40dp"
+            android:textSize="35sp"
             android:backgroundTint="@color/GoodYellow"
             />
 
@@ -51,10 +51,10 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:text="@string/wordtwo"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:textSize="40dp"
+            android:textSize="35sp"
             android:backgroundTint="@color/GoodYellow"
             />
 
